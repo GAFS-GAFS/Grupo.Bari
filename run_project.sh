@@ -51,7 +51,9 @@ python3 Case_Bari/ai_extraction.py
 
 echo -e "\n${GREEN}======================================================================${RESET}"
 echo -e "${GREEN}✅ ESTEIRA EXECUTADA COM SUCESSO!${RESET}"
-echo -e "${BOLD}Entregáveis gerados em Case_Bari/:${RESET}"
+echo -e "${BOLD}Entregáveis gerados em Grupo.Bari/:${RESET}"
 echo -e "  📄 ${GREEN}Relatorio_Lideranca.pdf${RESET}  (One-Pager executivo de 1 página para diretoria)"
 echo -e "  🔍 ${GREEN}laudos_extraidos.json${RESET}    (17 laudos estruturados com 100% acurácia)"
+echo -e "${BOLD}Arquivo nlp.log gerado em Case_Bari/:${RESET}"
+echo -e "   📄 ${GREEN}Execucao_nlp.log ${RESET}  (Possui todos os dados das etapas)"
 echo -e "${GREEN}======================================================================${RESET}\n"
