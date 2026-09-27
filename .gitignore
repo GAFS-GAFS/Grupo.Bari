@@ -12,10 +12,18 @@ __pycache__/
 venv/
 ENV/
 
-# Arquivos de log locais
+# Logs de execução
 *.log
 
-# Arquivos temporários de SO e pacotes locais
+# Arquivos temporários de SO
 .DS_Store
 Thumbs.db
 *.zip
+
+# Python portátil (gerado automaticamente pelo run_project.ps1/.bat)
+Case_Bari/.python_portable/
+
+# Outputs gerados pelo pipeline — ficam na raiz do projeto, não versionados
+Relatorio_Lideranca.pdf
+laudos_extraidos.json
+propostas_credito_tratado.csv

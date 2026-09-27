@@ -38,6 +38,10 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 if SCRIPT_DIR and os.getcwd() != SCRIPT_DIR:
     os.chdir(SCRIPT_DIR)
 
+# Diretório de saída: raiz do projeto (um nível acima de Case_Bari/)
+OUTPUT_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..'))
+
+
 # ==============================================================================
 # 1. Configuração do Sistema de Logs
 # ==============================================================================
@@ -439,5 +443,5 @@ def processAllAppraisals(appraisalFolder="laudos_avaliacao", outputFile="laudos_
 processarTodosOsLaudos = processAllAppraisals
 
 if __name__ == "__main__":
-    processAllAppraisals()
-
+    OUTPUT_JSON = os.path.join(OUTPUT_DIR, "laudos_extraidos.json")
+    processAllAppraisals(outputFile=OUTPUT_JSON)

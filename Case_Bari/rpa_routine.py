@@ -19,17 +19,18 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 if SCRIPT_DIR and os.getcwd() != SCRIPT_DIR:
     os.chdir(SCRIPT_DIR)
 
+# Diretório de saída: raiz do projeto (um nível acima de Case_Bari/)
+OUTPUT_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..'))
+
 # ==========================================
 # 1. Configuração do Sistema de Logs (Monitoramento)
 # ==========================================
-# Registra tanto no log diário da rotina quanto no log unificado de auditoria da esteira
-logFilename = f"execucao_rpa_{datetime.now().strftime('%Y%m%d')}.log"
-
+# Registra no log unificado de auditoria da esteira (execucao_nlp.log)
+# O log diário execucao_rpa_*.log foi removido — tudo já está presente no nlp.log
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler(logFilename, encoding='utf-8'),
         logging.FileHandler("execucao_nlp.log", mode='a', encoding='utf-8'),
         logging.StreamHandler(sys.stdout) # Garante que o usuário veja no terminal
     ]
@@ -486,9 +487,11 @@ def exportReport(metrics, outputName="Relatorio_Lideranca.pdf"):
 # ==========================================
 if __name__ == "__main__":
     INPUT_FILE = "propostas_credito.csv"
-    
+    OUTPUT_PDF  = os.path.join(OUTPUT_DIR, "Relatorio_Lideranca.pdf")
+
     # Executa a esteira (Pipeline) sequencialmente
     rawData = extractAndValidateData(INPUT_FILE)
     cleanedData = transformAndCleanData(rawData)
     keyMetrics = generateMetrics(cleanedData, rawDf=rawData)
-    exportReport(keyMetrics)
+    exportReport(keyMetrics, outputName=OUTPUT_PDF)
+
