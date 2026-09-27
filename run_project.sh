@@ -6,6 +6,13 @@
 
 set -e
 
+# Se executado por duplo clique ou sem terminal aberto, abre automaticamente no terminal gráfico
+if [ ! -t 1 ] && [ "$1" != "--no-spawn" ]; then
+    if command -v gnome-terminal >/dev/null 2>&1; then
+        exec gnome-terminal -- bash -c "cd '$(dirname "$0")'; '$0' --no-spawn; echo ''; read -p 'Pressione [ENTER] para fechar...'"
+    fi
+fi
+
 # Ensure execution in the project root directory
 cd "$(dirname "$0")"
 
