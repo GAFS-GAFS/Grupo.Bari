@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches de bibliotecas gráficas
+.matplotlib/
+/tmp/matplotlib*
+
+# Ambientes virtuais
+.venv/
+venv/
+ENV/
+
+# Arquivos de log locais
+*.log
+
+# Arquivos temporários de SO e pacotes locais
+.DS_Store
+Thumbs.db
+*.zip
+
+# Python portátil (gerado automaticamente pelo run_project.ps1/.bat)
+.python_portable/
+
+# Outputs gerados pelo pipeline (não versionados — são entregáveis, não código)
+Relatorio_Lideranca.pdf
+laudos_extraidos.json
+propostas_credito_tratado.csv
+execucao_rpa_*.log
+execucao_nlp.log

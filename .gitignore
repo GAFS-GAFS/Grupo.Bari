@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches de bibliotecas gráficas
+.matplotlib/
+/tmp/matplotlib*
+
+# Ambientes virtuais
+.venv/
+venv/
+ENV/
+
+# Arquivos de log locais
+*.log
+
+# Arquivos temporários de SO e pacotes locais
+.DS_Store
+Thumbs.db
+*.zip
