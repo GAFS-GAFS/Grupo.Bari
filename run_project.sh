@@ -33,6 +33,13 @@ if [ -d ".venv" ]; then
     source .venv/bin/activate
 fi
 
+# Verifica e instala dependências automaticamente caso o avaliador não as tenha instaladas
+if ! python3 -c "import pandas, numpy, matplotlib" >/dev/null 2>&1; then
+    echo -e "${CYAN}[AVISO] Bibliotecas necessárias não encontradas. Instalando via requirements.txt...${RESET}"
+    python3 -m pip install -r requirements.txt --quiet --break-system-packages 2>/dev/null || python3 -m pip install -r requirements.txt --quiet
+    echo -e "${GREEN}✓ Dependências instaladas com sucesso!${RESET}"
+fi
+
 echo -e "\n${BOLD}[ ETAPA 1/3 ] Diagnóstico e Análise Estatística do Funil...${RESET}"
 python3 Case_Bari/funnel_analysis.py
 
