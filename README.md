@@ -53,17 +53,20 @@ O projeto é 100% autônomo, multiplataforma (Linux, Windows e macOS) e não req
 ```text
 ├── README.md                   # Instruções de execução, visão geral dos arquivos e tempo dedicado
 ├── requirements.txt            # Dependências do projeto (pip install -r requirements.txt)
+├── Relatorio_Lideranca.pdf     # [Parte 2] One-Pager Executivo de 1 Página (A4 Paisagem) para diretoria
+├── laudos_extraidos.json       # [Parte 3] Base final dos 17 laudos estruturados nas 9 chaves estritas
+│
 ├── run_project.sh              # Orquestrador mestre para Linux / macOS
 ├── run_project.bat             # Orquestrador mestre para Windows (CMD / Duplo clique)
 ├── run_project.ps1             # Orquestrador mestre para Windows (PowerShell)
 │
-├── Case_Bari/                  # Diretório com a esteira executável e dados de apoio
-│   ├── DIARIO.md               # [Parte 4] Registro de uso de IA, aprendizado do zero, autocrítica e diário de bordo
-│   ├── Relatorio_Lideranca.pdf # One-Pager Executivo de 1 Página (A4 Paisagem, 300 DPI) para diretoria
+├── Case_Bari/                  # Diretório com os códigos-fonte, base bruta e diário
+│   ├── DIARIO.md               # [Parte 4] Diário de bordo, aprendizado do zero e autocrítica
+│   ├── Diario Gabriel Fabri.pdf # [Parte 4] Versão em PDF diagramada do Diário de Bordo
 │   ├── funnel_analysis.py      # [Parte 1] Diagnóstico estatístico, perdas financeiras e correlações
 │   ├── rpa_routine.py          # [Parte 2] Pipeline defensivo semanal e gerador do One-Pager PDF
 │   ├── ai_extraction.py        # [Parte 3] Extrator de laudos imobiliários com IA Gemini e Fallback Local
-│   ├── laudos_extraidos.json   # Base final contendo os 17 laudos estruturados nas 9 chaves estritas
+│   ├── execucao_nlp.log        # Log unificado de auditoria da esteira (Fases 1, 2 e 3 integradas)
 │   ├── propostas_credito.csv   # Base bruta original de 6.400 propostas (imutável em disco)
 │   └── laudos_avaliacao/       # Diretório contendo os 17 laudos técnicos em formato de texto livre
 └── .gitignore                  # Regras para exclusão de caches e ambientes virtuais
