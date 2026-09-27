@@ -17,6 +17,10 @@ ENV/
 Thumbs.db
 *.zip
 
+# Log diário do RPA (removido do pipeline — substituído pelo execucao_nlp.log)
+execucao_rpa_*.log
+
+
 # Python portátil (gerado automaticamente pelo run_project.ps1/.bat)
 Case_Bari/.python_portable/
 
