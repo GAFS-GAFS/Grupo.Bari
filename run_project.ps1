@@ -15,6 +15,12 @@ Write-Host "====================================================================
 Write-Host "              BANCO BARI  |  CENTRAL DE AUTOMACAO DE CREDITO          " -ForegroundColor Cyan
 Write-Host "======================================================================" -ForegroundColor Blue
 Write-Host ""
+Write-Host "[AVISO DE AMBIENTE WINDOWS]" -ForegroundColor Yellow
+Write-Host "Este script orquestrador verifica as bibliotecas necessarias para execucao." -ForegroundColor DarkGray
+Write-Host "Caso nao estejam instaladas, o instalador pip baixara automaticamente as" -ForegroundColor DarkGray
+Write-Host "dependencias declaradas no requirements.txt (pandas, numpy, matplotlib)." -ForegroundColor DarkGray
+Write-Host "Todas as operacoes sao restritas a pasta do projeto (sem alterar o sistema)." -ForegroundColor DarkGray
+Write-Host ""
 
 # ==============================================================================
 # BLOCO 1: DETECTA SE JÁ EXISTE UM PYTHON REAL (não é stub da Microsoft Store)
@@ -106,7 +112,9 @@ if ((Test-Path $stampFile) -and (Test-Path $reqFile)) {
 }
 
 if ($needsInstall -and (Test-Path $reqFile)) {
-    Write-Host "[AUTO-SETUP] Instalando dependencias do requirements.txt..." -ForegroundColor Yellow
+    Write-Host "[AVISO DE DOWNLOAD] Baixando e instalando bibliotecas necessarias no Windows..." -ForegroundColor Yellow
+    Write-Host "  -> Pacotes a serem baixados: pandas, numpy, matplotlib (declarados em requirements.txt)" -ForegroundColor Cyan
+    Write-Host "  -> Aguarde a conclusao do download e instalacao dos modulos..." -ForegroundColor DarkGray
     if ($pyCmd -eq $portablePy -and (Test-Path $portablePip)) {
         & $portablePip install -r $reqFile --quiet --no-warn-script-location
     } else {
