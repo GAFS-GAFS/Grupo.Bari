@@ -1,0 +1,158 @@
+2026-09-27 17:11:26,853 - INFO - ======================================================================
+2026-09-27 17:11:26,853 - INFO - FASE 1: DIAGNÓSTICO DO FUNIL DE CRÉDITO & TRATAMENTO DE DADOS
+2026-09-27 17:11:26,854 - INFO - ======================================================================
+2026-09-27 17:11:26,854 - INFO - Iniciando leitura do arquivo de propostas: propostas_credito.csv
+2026-09-27 17:11:26,884 - INFO - Volume bruto original carregado: 6400 propostas.
+2026-09-27 17:11:26,889 - WARNING - [TRATAMENTO - FORMATAÇÃO] 3 linhas com prefixo 'R$' em 'valor_imovel' detectadas e higienizadas (IDs: ['PR-000705', 'PR-002801', 'PR-006000']).
+2026-09-27 17:11:26,903 - INFO - [REMOÇÃO - REGRA DE NEGÓCIO] 535 propostas com tipo_imovel = 'Terreno' descartadas (garantia inelegível na política de Home Equity).
+2026-09-27 17:11:26,907 - INFO - [REMOÇÃO - POLÍTICA DE RISCO] 904 propostas com LTV > 60% expurgadas (mitigação mandatória contra risco de inadimplência).
+2026-09-27 17:11:26,909 - WARNING - [REMOÇÃO - COMPLIANCE REGULATÓRIO] 1 lead(s) com idade < 18 anos removido(s) (ID: ['PR-000079'], Idade: [14] anos - falta de capacidade civil para alienação fiduciária).
+2026-09-27 17:11:26,911 - INFO - [TRATAMENTO - PADRONIZAÇÃO] Datas com formatos mistos (DD/MM/YYYY) convertidas para padrão ISO (YYYY-MM-DD).
+2026-09-27 17:11:26,960 - INFO - [TRATAMENTO - PADRONIZAÇÃO] Canais de origem normalizados (remoção de espaços invisíveis e capitalização uniforme).
+2026-09-27 17:11:26,962 - INFO - ===> Base higienizada com sucesso: 4960 propostas válidas restantes para análise (1440 removidas no total).
+
+2026-09-27 17:11:26,970 - INFO - ======================================================================
+2026-09-27 17:11:26,970 - INFO - DIAGNÓSTICO 1: PERDA FINANCEIRA ACUMULADA POR ETAPA DO FUNIL
+2026-09-27 17:11:26,970 - INFO - ======================================================================
+2026-09-27 17:11:26,971 - INFO - Etapa 1: 203 propostas perdidas | R$ 70,864,200.09 (4.94% do total evadido)
+2026-09-27 17:11:26,971 - INFO - Etapa 2: 733 propostas perdidas | R$ 259,460,628.41 (18.09% do total evadido)
+2026-09-27 17:11:26,971 - INFO - Etapa 3: 1383 propostas perdidas | R$ 507,526,367.70 (35.38% do total evadido) [MAIOR GARGALO CRÍTICO DA OPERAÇÃO]
+2026-09-27 17:11:26,971 - INFO - Etapa 4: 969 propostas perdidas | R$ 356,091,299.47 (24.82% do total evadido)
+2026-09-27 17:11:26,971 - INFO - Etapa 5: 653 propostas perdidas | R$ 240,503,127.91 (16.77% do total evadido)
+2026-09-27 17:11:26,973 - INFO - Total Geral Evadido do Funil: R$ 1,434,445,623.58
+
+2026-09-27 17:11:26,974 - INFO - ======================================================================
+2026-09-27 17:11:26,975 - INFO - DIAGNÓSTICO 2: AUDITORIA DAS PERCEPÇÕES DA DIRETORIA
+2026-09-27 17:11:26,976 - INFO - ======================================================================
+2026-09-27 17:11:26,983 - INFO - [Hipótese 1: A taxa de conversão caiu ao longo de 2025? -> CONFIRMADO]
+2026-09-27 17:11:26,985 - INFO -   Mês 2025-05: 266 leads | 58 contratados | Conversão: 21.80%
+2026-09-27 17:11:26,985 - INFO -   Mês 2025-06: 280 leads | 59 contratados | Conversão: 21.07%
+2026-09-27 17:11:26,986 - INFO -   Mês 2025-07: 250 leads | 43 contratados | Conversão: 17.20%
+2026-09-27 17:11:26,986 - INFO -   Mês 2025-08: 214 leads | 41 contratados | Conversão: 19.16%
+2026-09-27 17:11:26,987 - INFO -   Mês 2025-09: 179 leads | 35 contratados | Conversão: 19.55%
+2026-09-27 17:11:26,991 - INFO -   Mês 2025-10: 161 leads | 32 contratados | Conversão: 19.88%
+2026-09-27 17:11:26,992 - INFO -   Mês 2025-11: 112 leads | 17 contratados | Conversão: 15.18%
+2026-09-27 17:11:26,992 - INFO -   Mês 2025-12: 128 leads | 31 contratados | Conversão: 24.22%
+2026-09-27 17:11:26,999 - INFO - 
+[Hipótese 2: O canal Correspondentes performa mal? -> CONFIRMADO & CRÍTICO]
+2026-09-27 17:11:27,000 - INFO -   Canal Parceria       :  763 leads | 183 contratados | Conversão: 23.98%
+2026-09-27 17:11:27,000 - INFO -   Canal Indicação      :  766 leads | 180 contratados | Conversão: 23.50%
+2026-09-27 17:11:27,001 - INFO -   Canal Mídia paga     :  994 leads | 220 contratados | Conversão: 22.13%
+2026-09-27 17:11:27,002 - INFO -   Canal Organico       : 1050 leads | 225 contratados | Conversão: 21.43%
+2026-09-27 17:11:27,005 - INFO -   Canal Correspondente : 1387 leads | 210 contratados | Conversão: 15.14% [PIOR CANAL DA OPERAÇÃO]
+2026-09-27 17:11:27,006 - INFO - 
+[Hipótese 3: Política de Crédito de LTV Máximo de 60% -> CONFIRMADA EM RISCO & REFINADA EM OPERAÇÃO]
+2026-09-27 17:11:27,007 - INFO -   - Diagnóstico de Risco: Propostas com LTV > 60% convertem apenas 12,6% (vs 22,7% na faixa ótima de 35% a 50%), confirmando o risco.
+2026-09-27 17:11:27,008 - INFO -   - Diagnóstico de Operação: 981 propostas (15,3% da base bruta) entraram no funil furando a política de 60%;
+2026-09-27 17:11:27,008 - INFO -     203 propostas avançaram até a Etapa 4, gerando custos de laudos periciais de engenharia para operações inelegíveis.
+2026-09-27 17:11:27,009 - INFO -   - Diretriz Executiva: A política de 60% é assertiva em risco (Lei 9.514/1997 e deságio de leilão), mas exige
+2026-09-27 17:11:27,010 - INFO -     trava sistêmica mandatória na Etapa 1 (Simulação) e direcionamento comercial para o Sweet Spot (35% a 50% de LTV).
+
+2026-09-27 17:11:27,011 - INFO - ======================================================================
+2026-09-27 17:11:27,011 - INFO - DIAGNÓSTICO 3: FATORES DETERMINANTES DE CONVERSÃO & PLANO DE AÇÃO
+2026-09-27 17:11:27,012 - INFO - ======================================================================
+2026-09-27 17:11:27,017 - INFO - [Correlações Numéricas com a Conversão em Contrato]:
+2026-09-27 17:11:27,021 - INFO -   Variável score_credito     : Correlação r = +0.176
+2026-09-27 17:11:27,022 - INFO -   Variável ltvCalculated     : Correlação r = -0.026
+2026-09-27 17:11:27,023 - INFO -   Variável valor_solicitado  : Correlação r = -0.027
+2026-09-27 17:11:27,032 - INFO - 
+[Impacto da Recorrência de Clientes]:
+2026-09-27 17:11:27,032 - INFO -   Novo Cliente      : 4007 propostas | Conversão: 19.59%
+2026-09-27 17:11:27,037 - INFO -   Cliente Recorrente:  953 propostas | Conversão: 24.45%
+2026-09-27 17:11:27,038 - INFO - 
+[Plano de Ação Estratégico Recomendado (Impacto: +R$ 56,9 Milhões)]:
+2026-09-27 17:11:27,039 - INFO -   1. Trava de Score em Correspondentes (Corte 690): +R$ 30,4M (+87 contratos)
+2026-09-27 17:11:27,039 - INFO -   2. Esteira Fast-Track para Recorrentes:           +R$ 16,3M (+47 contratos)
+2026-09-27 17:11:27,040 - INFO -   3. Realocação Geográfica de Mídia (CO/MG):        +R$ 10,2M (+29 contratos)
+2026-09-27 17:11:27,041 - INFO - ======================================================================
+
+2026-09-27 17:11:27,958 - INFO - ======================================================================
+2026-09-27 17:11:27,959 - INFO - FASE 2: ROTINA SEMANAL RPA & GERAÇÃO DE RELATÓRIO EXECUTIVO
+2026-09-27 17:11:27,963 - INFO - ======================================================================
+2026-09-27 17:11:27,964 - INFO - Iniciando leitura do arquivo semanal: propostas_credito.csv
+2026-09-27 17:11:27,996 - INFO - Leitura concluída. 6400 registros originais encontrados.
+2026-09-27 17:11:27,997 - INFO - Iniciando esteira de transformação de dados...
+2026-09-27 17:11:28,106 - WARNING - [ALERTA DE FORMATAÇÃO] Data '11/04/2025' modificada para '2025-04-11' (ID: PR-000151)
+2026-09-27 17:11:28,108 - WARNING - [ALERTA DE FORMATAÇÃO] Data '20/04/2025' modificada para '2025-04-20' (ID: PR-000152)
+2026-09-27 17:11:28,111 - WARNING - [ALERTA DE FORMATAÇÃO] Data '07/12/2024' modificada para '2024-12-07' (ID: PR-000153)
+2026-09-27 17:11:30,625 - INFO - Limpeza de LTV > 60% (ou dados nulos): 981 propostas removidas da apuração.
+2026-09-27 17:11:30,631 - INFO - Limpeza de Terrenos: 458 descartados.
+2026-09-27 17:11:30,636 - INFO - Limpeza de Compliance (Menores): 1 leads removidos.
+2026-09-27 17:11:30,636 - INFO - Transformação concluída. 4960 registros válidos prontos.
+2026-09-27 17:11:30,668 - INFO - Iniciando exportação do arquivo: Relatorio_Lideranca.pdf (One-Pager Executivo de 1 Página)
+2026-09-27 17:11:31,461 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-09-27 17:11:31,462 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-09-27 17:11:31,988 - INFO - Exportação do One-Pager Executivo (1 Página) finalizada com sucesso.
+2026-09-27 17:11:32,338 - INFO - ======================================================================
+2026-09-27 17:11:32,338 - INFO - FASE 3: EXTRAÇÃO INTELIGENTE DE LAUDOS (NLP & IA)
+2026-09-27 17:11:32,340 - INFO - ======================================================================
+2026-09-27 17:11:32,342 - INFO - Iniciando extração inteligente para 17 laudos...
+
+2026-09-27 17:11:32,343 - INFO - 📄 Processando: laudo_01.txt...
+2026-09-27 17:11:33,653 - INFO - ✅ laudo_01.txt concluído via [Gemini_API].
+2026-09-27 17:11:36,654 - INFO - 📄 Processando: laudo_02.txt...
+2026-09-27 17:11:37,750 - INFO - ✅ laudo_02.txt concluído via [Gemini_API].
+2026-09-27 17:11:40,751 - INFO - 📄 Processando: laudo_03.txt...
+2026-09-27 17:11:41,837 - INFO - ✅ laudo_03.txt concluído via [Gemini_API].
+2026-09-27 17:11:44,838 - INFO - 📄 Processando: laudo_04.txt...
+2026-09-27 17:11:45,861 - INFO - ✅ laudo_04.txt concluído via [Gemini_API].
+2026-09-27 17:11:48,862 - INFO - 📄 Processando: laudo_05.txt...
+2026-09-27 17:11:49,884 - INFO - ✅ laudo_05.txt concluído via [Gemini_API].
+2026-09-27 17:11:52,886 - INFO - 📄 Processando: laudo_06.txt...
+2026-09-27 17:11:53,919 - INFO - ✅ laudo_06.txt concluído via [Gemini_API].
+2026-09-27 17:11:56,920 - INFO - 📄 Processando: laudo_07.txt...
+2026-09-27 17:11:58,043 - INFO - ✅ laudo_07.txt concluído via [Gemini_API].
+2026-09-27 17:12:01,044 - INFO - 📄 Processando: laudo_08.txt...
+2026-09-27 17:12:02,134 - INFO - ✅ laudo_08.txt concluído via [Gemini_API].
+2026-09-27 17:12:05,135 - INFO - 📄 Processando: laudo_09.txt...
+2026-09-27 17:12:06,261 - INFO - ✅ laudo_09.txt concluído via [Gemini_API].
+2026-09-27 17:12:09,262 - INFO - 📄 Processando: laudo_10.txt...
+2026-09-27 17:12:10,355 - INFO - ✅ laudo_10.txt concluído via [Gemini_API].
+2026-09-27 17:12:13,356 - INFO - 📄 Processando: laudo_11.txt...
+2026-09-27 17:12:14,351 - INFO - ✅ laudo_11.txt concluído via [Gemini_API].
+2026-09-27 17:12:17,352 - INFO - 📄 Processando: laudo_12.txt...
+2026-09-27 17:12:18,421 - INFO - ✅ laudo_12.txt concluído via [Gemini_API].
+2026-09-27 17:12:21,422 - INFO - 📄 Processando: laudo_13.txt...
+2026-09-27 17:12:22,511 - INFO - ✅ laudo_13.txt concluído via [Gemini_API].
+2026-09-27 17:12:25,513 - INFO - 📄 Processando: laudo_14.txt...
+2026-09-27 17:12:26,589 - INFO - ✅ laudo_14.txt concluído via [Gemini_API].
+2026-09-27 17:12:29,590 - INFO - 📄 Processando: laudo_15.txt...
+2026-09-27 17:12:30,646 - INFO - ✅ laudo_15.txt concluído via [Gemini_API].
+2026-09-27 17:12:33,647 - INFO - 📄 Processando: laudo_16.txt...
+2026-09-27 17:12:34,851 - INFO - ✅ laudo_16.txt concluído via [Gemini_API].
+2026-09-27 17:12:37,853 - INFO - 📄 Processando: laudo_17.txt...
+2026-09-27 17:12:38,983 - INFO - ✅ laudo_17.txt concluído via [Gemini_API].
+2026-09-27 17:12:41,983 - INFO - 
+📁 Todos os 17 laudos foram salvos com sucesso em 'laudos_extraidos.json'.
+2026-09-27 17:12:41,984 - INFO - 
+============================================================
+2026-09-27 17:12:41,985 - INFO - AVALIAÇÃO DE QUALIDADE: GABARITO HUMANO (Ground Truth)
+2026-09-27 17:12:41,985 - INFO - ============================================================
+2026-09-27 17:12:41,985 - INFO - 
+📄 laudo_01.txt (Origem: Gemini_API):
+2026-09-27 17:12:41,985 - INFO -   ✅ tipo_imovel: 'apartamento'
+2026-09-27 17:12:41,985 - INFO -   ✅ endereco: 'Rua das Acácias, 145, ap. 82 - Vila Mariana, São Paulo/SP'
+2026-09-27 17:12:41,985 - INFO -   ✅ ano_construcao: '2014'
+2026-09-27 17:12:41,985 - INFO -   ✅ valor_avaliacao: '642000.0'
+2026-09-27 17:12:41,986 - INFO -   ✅ matricula: '184.772 do 14º CRI de São Paulo'
+2026-09-27 17:12:41,986 - INFO -   ✅ data_vistoria: '2025-03-12'
+2026-09-27 17:12:41,987 - INFO - 
+📄 laudo_07.txt (Origem: Gemini_API):
+2026-09-27 17:12:41,988 - INFO -   ✅ tipo_imovel: 'casa'
+2026-09-27 17:12:41,988 - INFO -   ✅ endereco: 'Rua Azul, 33, bairro Jardim Europa, Porto Alegre - RS'
+2026-09-27 17:12:41,989 - INFO -   ✅ ano_construcao: '2011'
+2026-09-27 17:12:41,989 - INFO -   ✅ valor_avaliacao: '372000.0'
+2026-09-27 17:12:41,990 - INFO -   ✅ data_vistoria: '2025-04-20'
+2026-09-27 17:12:41,991 - INFO - 
+📄 laudo_17.txt (Origem: Gemini_API):
+2026-09-27 17:12:41,991 - INFO -   ✅ tipo_imovel: 'apartamento'
+2026-09-27 17:12:41,992 - INFO -   ✅ endereco: 'Rua Harmonia, 44, Vila Madalena, São Paulo/SP'
+2026-09-27 17:12:41,992 - INFO -   ✅ ano_construcao: '2015'
+2026-09-27 17:12:41,993 - INFO -   ✅ valor_avaliacao: '610000.0'
+2026-09-27 17:12:41,993 - INFO -   ✅ data_vistoria: '2025-06-25'
+2026-09-27 17:12:41,994 - INFO -   ✅ areas: 'CONTRADIÇÃO DETECTADA - verificar manualmente'
+2026-09-27 17:12:41,994 - INFO - 
+============================================================
+2026-09-27 17:12:41,995 - INFO - ACURÁCIA GERAL: 17/17 campos corretos = 100.0%
+2026-09-27 17:12:41,996 - INFO - ============================================================
+

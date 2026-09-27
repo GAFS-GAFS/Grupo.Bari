@@ -12,9 +12,6 @@ __pycache__/
 venv/
 ENV/
 
-# Logs de execução
-*.log
-
 # Arquivos temporários de SO
 .DS_Store
 Thumbs.db
