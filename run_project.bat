@@ -10,12 +10,6 @@ echo.
 
 cd /d "%~dp0"
 
-:: ==============================================================================
-:: Este .bat delega TODO o trabalho ao run_project.ps1 via PowerShell.
-:: O PS1 cuida de: detectar Python, baixar versao portatil se necessario,
-:: instalar dependencias e rodar a esteira. Nenhuma instalacao no sistema.
-:: ==============================================================================
-
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0run_project.ps1"
 
 if %errorlevel% neq 0 (

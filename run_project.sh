@@ -6,7 +6,7 @@
 
 set -e
 
-# Ensure execution in the project directory
+# Ensure execution in the project root directory
 cd "$(dirname "$0")"
 
 # Terminal Colors
@@ -27,17 +27,17 @@ if [ -d ".venv" ]; then
 fi
 
 echo -e "\n${BOLD}[ ETAPA 1/3 ] Diagnóstico e Análise Estatística do Funil...${RESET}"
-python3 funnel_analysis.py
+python3 Case_Bari/funnel_analysis.py
 
 echo -e "\n${BOLD}[ ETAPA 2/3 ] Esteira Automatizada RPA + Relatório Executivo PDF...${RESET}"
-python3 rpa_routine.py
+python3 Case_Bari/rpa_routine.py
 
 echo -e "\n${BOLD}[ ETAPA 3/3 ] Extração Inteligente de Laudos com IA (NLP)...${RESET}"
-python3 ai_extraction.py
+python3 Case_Bari/ai_extraction.py
 
 echo -e "\n${GREEN}======================================================================${RESET}"
 echo -e "${GREEN}✅ ESTEIRA EXECUTADA COM SUCESSO!${RESET}"
-echo -e "${BOLD}Entregáveis gerados no diretório:${RESET}"
+echo -e "${BOLD}Entregáveis gerados em Case_Bari/:${RESET}"
 echo -e "  📄 ${GREEN}Relatorio_Lideranca.pdf${RESET}  (One-Pager executivo de 1 página para diretoria)"
 echo -e "  🔍 ${GREEN}laudos_extraidos.json${RESET}    (17 laudos estruturados com 100% acurácia)"
 echo -e "${GREEN}======================================================================${RESET}\n"
