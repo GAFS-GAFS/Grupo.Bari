@@ -11,15 +11,19 @@ Este repositório contém a solução ponta a ponta desenvolvida para otimizar e
 
 ## 📦 Dependências e Instalação
 
-O projeto requer Python 3.8+ e utiliza apenas 3 bibliotecas externas. Para instalá-las em qualquer ambiente:
-
-```bash
-pip install -r requirements.txt
-```
+O projeto requer Python 3.8+ e utiliza apenas 3 bibliotecas externas para toda a esteira:
 
 * `pandas` — Manipulação de dados, agrupamentos analíticos e esteira RPA.
 * `numpy` — Cálculos matriciais e coeficientes estatísticos de correlação.
 * `matplotlib` — Renderização do relatório executivo em PDF de 1 página.
+
+> [!TIP]
+> **Instalação Automática:** Os scripts orquestradores (`run_project.sh`, `run_project.bat` e `run_project.ps1`) já realizam a verificação e o download/instalação das bibliotecas automaticamente no Linux e Windows caso não estejam presentes na máquina.
+>
+> Caso deseje instalar previamente de forma manual:
+> ```bash
+> pip install -r requirements.txt
+> ```
 
 ---
 
@@ -41,7 +45,8 @@ O projeto é 100% autônomo, multiplataforma (Linux, Windows e macOS) e não req
   ```
 
 ### O que os scripts orquestradores fazem automaticamente:
-* Ativam o ambiente virtual Python (`.venv` ou `.venv\Scripts`).
+* Verificam as dependências e realizam a instalação automática das bibliotecas caso faltem no sistema.
+* Ativam o ambiente virtual Python (`.venv` ou `.venv\Scripts`) caso existente.
 * Executam a **Parte 1** (`funnel_analysis.py`): extrai os insights financeiros e correlações no console.
 * Executam a **Parte 2** (`rpa_routine.py`): higieniza os dados e gera o arquivo `Relatorio_Lideranca.pdf` de 1 página.
 * Executam a **Parte 3** (`ai_extraction.py`): processa os 17 laudos não estruturados e salva o `laudos_extraidos.json`.
